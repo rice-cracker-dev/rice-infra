@@ -301,11 +301,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1760028278,
-        "narHash": "sha256-9fniLfhSgpfT6ORWii0CUO3I9xuy4MROk2sqqVlQ+nw=",
+        "lastModified": 1760030561,
+        "narHash": "sha256-gT0n51kKJD/hjtlTQGBnOgE3J+XLQTiNVevfAyg7n+I=",
         "owner": "rice-cracker-dev",
         "repo": "ricedev.me",
-        "rev": "0d443db5819b8a6a917be43e8987348369d7ab99",
+        "rev": "14676d00b4e8ed5e877ee0c2506b412aa5207e46",
         "type": "github"
       },
       "original": {
