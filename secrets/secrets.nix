@@ -1,0 +1,9 @@
+let
+  users = import ../keys.nix;
+  systems = ["ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC07VHvtS59lFuW1K0mGLcXFABYq0eXufaRZ5Bf0g1ooMBF8VzAltfgqRsmitPR6eEVI6KX24PEP9Vz8PYFXLdoUnuobONgXWi5gaXfeEB/GTPBwsTyU8jsPPRN1uqMEbFsOU27n2MOWVYR+4yF8h3VSxV0s5msf/X7gk1myoQoNaUrT9cPWVaje1yT/0gF97fihRmotZ7G3mQ0e8rCYnYj44KSuUNNY1lAUfgLozPPPffRKV8xOm52zRV24fyp/JZK0RFxl4Q6IZ4AXq0Zziwu59JT9DucslMYd1olUwLMPy5Kos82+RjwkbxUT5tLohU8PBiLfNO8EhT/stxW78XzHUM/KYhpVxaqoXmrD2aXV4WW/SJ1CWPlZLwXObv+vHFvCY5ksHTjtmXOxO1nqWdaf6rbMEfeKiwkT8606o7lz7b+H9oErT+EgT9soBClYcFrskPyu7xCvc7zjfDVKlqgN9+mSwN2FiVWvQEkt1B7W9n+uSqfATNCc5DXkA/Xi0pofccMLg05YQ43tAvS4raBUh9U5NUAVn+mpLqpp7e9vvydKxpnm76wmhSd92ATitVCnLXXn2UpQeGElaB4vkqKZZ3duJV+MwTaa7mUwLxUa0LM/xpZypzFSPN7YtduJ1YnwEFf8FztOF7nt6FDzg71NoijjMeMVU7TcWLuPQTfZQ=="];
+
+  publicKeys = users ++ systems;
+in {
+  "cloudflare.age".publicKeys = publicKeys;
+  "plausible-secret-key.age".publicKeys = publicKeys;
+}
