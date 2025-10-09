@@ -6,6 +6,7 @@
     ./networking.nix
     ./openssh.nix
     ./plausible.nix
+    ./site.nix
   ];
 
   nix.settings = {
