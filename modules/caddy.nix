@@ -2,7 +2,10 @@
   pkgs,
   config,
   ...
-}: {
+}: let
+  # builtins.toJSON returns an escaped string given a string
+  shrekCopypasta = builtins.toJSON (builtins.readFile ./shrek.txt);
+in {
   services.caddy = {
     enable = true;
 
@@ -14,6 +17,10 @@
     globalConfig = ''
       email ricecracker2234@proton.me
       acme_dns cloudflare {$CF_API_TOKEN}
+    '';
+
+    virtualHosts."shrek.ricedev.me".extraConfig = ''
+      respond ${shrekCopypasta}
     '';
   };
 
