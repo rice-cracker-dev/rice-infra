@@ -8,7 +8,7 @@
     enable = true;
 
     serviceConfig = {
-      ExecStart = "${pkgs.nodejs}/bin/nodejs ${self.packages.${pkgs.stdenv.hostPlatform.system}.aronaldo}/lib/node_modules/aronaldo/index.js";
+      ExecStart = "${self.packages.${pkgs.stdenv.hostPlatform.system}.aronaldo}/bin/aronaldo";
       EnvironmentFile = config.age.secrets.aronaldo.path;
     };
   };

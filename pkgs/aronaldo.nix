@@ -1,6 +1,8 @@
 {
   buildNpmPackage,
   fetchFromGitHub,
+  makeWrapper,
+  nodejs,
 }:
 buildNpmPackage (final: {
   pname = "aronaldo";
@@ -9,9 +11,11 @@ buildNpmPackage (final: {
   src = fetchFromGitHub {
     owner = "ruanyouxing";
     repo = "aronaldo";
-    rev = "5b6e8b42b6d53d0625345f4e1603e5b33f99d261";
-    hash = "sha256-s2ahiwVmzGRT+ezV36LRLB5CIM6e67YBH7WBU8Aovv0=";
+    rev = "af8f2280f9ffd5941879e3e5e59c425738cf851c";
+    hash = "sha256-/Kt8HB0A8hH6W8vssXu4MG7w0I7eSygjcz38OvqgwN8=";
   };
+
+  nativeBuildInputs = [makeWrapper];
 
   dontNpmBuild = true;
   npmDepsHash = "sha256-0sQ9zSTe1HIhqrYEWK7Hxc0YmKKJNNvo4zvB61jJNEg=";
@@ -20,4 +24,9 @@ buildNpmPackage (final: {
   npmPackFlags = ["--ignore-scripts"];
 
   NODE_OPTIONS = "--openssl-legacy-provider";
+
+  postInstall = ''
+    makeWrapper ${nodejs}/bin/node $out/bin/aronaldo \
+      --add-flags "$out/lib/node_modules/aronaldo/index.js"
+  '';
 })
