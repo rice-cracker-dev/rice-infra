@@ -6,4 +6,5 @@ let
 in {
   "cloudflare.age".publicKeys = publicKeys;
   "plausible-secret-key.age".publicKeys = publicKeys;
+  "aronaldo.age".publicKeys = publicKeys;
 }

@@ -8,11 +8,6 @@
 
     ricedev-me.url = "github:rice-cracker-dev/ricedev.me";
 
-    nixos-generators = {
-      url = "github:nix-community/nixos-generators";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     disko = {
       url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -22,18 +17,23 @@
   outputs = inputs @ {
     flake-parts,
     nixpkgs,
-    nixos-generators,
     ...
   }:
-    flake-parts.lib.mkFlake {inherit inputs;} {
+    flake-parts.lib.mkFlake {inherit inputs;} ({self, ...}: {
       systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin"];
 
       flake = {
         nixosConfigurations = {
           netcup = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
-            specialArgs = {inherit inputs;};
+            specialArgs = {inherit inputs self;};
             modules = [./hosts/netcup];
+          };
+
+          test-vm = nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+            specialArgs = {inherit inputs self;};
+            modules = [./hosts/test-vm];
           };
         };
       };
@@ -41,23 +41,22 @@
       perSystem = {
         pkgs,
         inputs',
-        system,
+        lib,
         ...
       }: {
-        packages.test-vm = nixos-generators.nixosGenerate {
-          inherit system;
-          modules = [./hosts/test-vm];
-          specialArgs = {inherit inputs;};
-          format = "vm";
+        packages = lib.packagesFromDirectoryRecursive {
+          inherit (pkgs) callPackage;
+          directory = ./pkgs;
         };
 
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
             nixos-anywhere
             openssl
+            node2nix
             inputs'.agenix.packages.default
           ];
         };
       };
-    };
+    });
 }

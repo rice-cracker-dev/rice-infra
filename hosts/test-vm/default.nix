@@ -29,13 +29,7 @@ in {
 
   networking.firewall.enable = lib.mkForce false;
   services.caddy.enable = lib.mkForce false;
-
-  virtualisation.diskSize = 1024 * 32;
-  virtualisation.memorySize = 1024 * 4;
-  virtualisation.forwardPorts = [
-    (forwardGuestPort config.services.immich.port)
-    (forwardGuestPort config.services.plausible.server.port)
-  ];
+  services.immich.enable = lib.mkForce false;
 
   system.stateVersion = "25.11";
 }

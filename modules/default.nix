@@ -1,6 +1,7 @@
 {
   imports = [
     ./agenix.nix
+    ./aronaldo.nix
     ./caddy.nix
     ./immich.nix
     ./networking.nix
