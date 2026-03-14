@@ -11,8 +11,8 @@ buildNpmPackage (final: {
   src = fetchFromGitHub {
     owner = "ruanyouxing";
     repo = "aronaldo";
-    rev = "031ca642f2891a21e5c49e67e3d38c3b596d12ec";
-    hash = "sha256-FGhQVJMWouBzoXXWoAy+Galg9Lg3snEq3TgoQ5iBEq0=";
+    rev = "c8995fbf44bf2a599df5722ff608f325047ca2a9";
+    hash = "sha256-UdiEcamWT8dweBIhR8FzjUpyrJYwkAZdPtHA2/kFQ2E=";
   };
 
   nativeBuildInputs = [makeWrapper];
