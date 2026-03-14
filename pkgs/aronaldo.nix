@@ -28,5 +28,7 @@ buildNpmPackage (final: {
   postInstall = ''
     makeWrapper ${nodejs}/bin/node $out/bin/aronaldo \
       --add-flags "$out/lib/node_modules/aronaldo/index.js"
+    makeWrapper ${nodejs}/bin/node $out/bin/aronaldo-deploy \
+      --add-flags "$out/lib/node_modules/aronaldo/deploy-commands.js"
   '';
 })
